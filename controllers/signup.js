@@ -1,24 +1,14 @@
 import { db } from "../database/database";
+import userSingUpSchema from "../schemas/userSignUpSchema";
 import bcrypt from "bcrypt";
 export async function SignUp(req, res) {
-    const {name, email, password, confirmPassword} = req.body;
+  const { error, value } = userSingUpSchema.validate(req.body);
+  
+  if (error) {
+    return res.status(422).send({ error: error.details[0].message });
+  }
+    const {name, email, password} = value;
 
-    if (!name || !email || !password || !confirmPassword) {
-        return res.status(422).send("Todos os campos são obrigatórios.");
-      }
-
-    const emailValidation = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailValidation.test(email)) {
-        return res.status(422).send("Formato de e-mail inválido.");
-      }
-    
-    if (password.length < 6) {
-        return res.status(422).send("A senha deve ter no mínimo 6 caracteres.");
-      }
-    if (password !== confirmPassword) {
-        return res.status(422).send("As senhas não coincidem.");
-      }
-    
     try {
         const usersCollection = db.collection('users');
 

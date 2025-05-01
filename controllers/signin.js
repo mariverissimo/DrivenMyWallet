@@ -1,21 +1,17 @@
 import { db } from "../database/database.js";
+import userSignInSchema from "../schemas/userSignInSchema.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 dotenv.config();
 
 export async function SignIn(req, res) {
-    const { email, password } = req.body;
-
-    if (!email || !password) {
-        return res.status(422).send({ message: "Todos os campos são obrigatórios." });
-      }
-    
-    const emailValidation = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailValidation.test(email)) {
-            return res.status(422).send({ message: "Formato de e-mail inválido." });
-        }
-    
+    const { error, value } = userSignInSchema.validate(req.body);
+  
+    if (error) {
+      return res.status(422).send({ error: error.details[0].message });
+    }
+    const { email, password } = value;
     try{
        const usersCollection = db.collection("users")
         const user = await usersCollection.findOne({email});
