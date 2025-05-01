@@ -1,10 +1,11 @@
 import express from 'express';
+import routes from '../router/router';
 const app = express();
-config();
 const PORT = process.env.PORT;
 
 app.use(express.json());
 
+app.use(routes)
 
 app.listen(PORT, () => {
     console.log("Listening on 5000")

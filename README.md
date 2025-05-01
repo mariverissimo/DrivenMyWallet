@@ -9,3 +9,5 @@ DATABASE_URL=mongodb://localhost:27017/mywallet
 PORT: The port your server will run on.
 
 DATABASE_URL: The connection string for your MongoDB server. Replace it with your actual URI if hosted remotely.
+
+JWT_SECRET: The token generated for authenticated users
