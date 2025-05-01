@@ -13,7 +13,7 @@ export async function authenticateToken(req, res, next) {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.userId = decoded.userId; // salva ID do usuário para uso posterior
+    req.userId = decoded.userId;
     next();
   } catch (err) {
     return res.status(401).send({ message: "Token inválido." });

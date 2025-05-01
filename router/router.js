@@ -1,8 +1,10 @@
 import { Router } from "express";
-import { SignUpRouter } from "./signupRouter"
-import {SignInRouter} from "./signinRouter"
+import signuprouter from "./signupRouter"
+import signinrouter from "./signinRouter"
+import transactionrouter from "./transactionRouter";
 
 const router = Router()
-router.use(SignUpRouter)
-router.use(SignInRouter)
+router.use(signuprouter)
+router.use(signinrouter)
+router.use(transactionrouter)
 export default router;
