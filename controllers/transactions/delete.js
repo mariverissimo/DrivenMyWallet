@@ -1,10 +1,13 @@
 import { db } from "../../database/database.js";
+import { ObjectId } from "mongodb";
 
 export async function deleteTransaction(req, res) {
   const transactionId = req.params.id; 
-
+  
   try {
-    const transaction = await db.collection("transactions").findOne({ _id: transactionId });
+    const transactionObjectId = new ObjectId(transactionId);
+
+    const transaction = await db.collection("transactions").findOne({ _id: transactionObjectId });
 
     if (!transaction) {
       return res.status(404).send({ message: "Transação não encontrada." });
@@ -14,7 +17,7 @@ export async function deleteTransaction(req, res) {
       return res.status(401).send({ message: "Você não pode excluir essa transação." });
     }
 
-    await db.collection("transactions").deleteOne({ _id: transactionId });
+    await db.collection("transactions").deleteOne({ _id: transactionObjectId });
 
     return res.status(204).send();
   } catch (err) {

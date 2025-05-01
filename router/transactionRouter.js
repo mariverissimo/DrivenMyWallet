@@ -12,4 +12,4 @@ transactionRouter.get("/transactions", authenticateToken, getTransactions);
 transactionRouter.put("/transactions/:id", authenticateToken, editTransaction);
 transactionRouter.delete("/transactions/:id", authenticateToken, deleteTransaction);
 
-export default { transactionRouter };
+export default transactionRouter;
