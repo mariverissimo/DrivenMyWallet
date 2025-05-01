@@ -1,5 +1,5 @@
-import { db } from "../database/database";
-import userSingUpSchema from "../schemas/userSignUpSchema";
+import { db } from "../database/database.js";
+import userSingUpSchema from "../schemas/userSignUpSchema.js";
 import bcrypt from "bcrypt";
 export async function SignUp(req, res) {
   const { error, value } = userSingUpSchema.validate(req.body);

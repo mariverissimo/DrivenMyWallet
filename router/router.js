@@ -1,10 +1,10 @@
 import { Router } from "express";
-import signuprouter from "./signupRouter"
-import signinrouter from "./signinRouter"
-import transactionrouter from "./transactionRouter";
+import signuprouter from "./signupRouter.js"
+import signinrouter from "./signinRouter.js"
+import transactionrouter from "./transactionRouter.js";
 
-const router = Router()
-router.use(signuprouter)
-router.use(signinrouter)
-router.use(transactionrouter)
-export default router;
+const routes = Router()
+routes.use(signuprouter)
+routes.use(signinrouter)
+routes.use(transactionrouter)
+export default routes;
