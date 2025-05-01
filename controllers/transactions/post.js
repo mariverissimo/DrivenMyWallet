@@ -1,5 +1,5 @@
-import { db } from "../database/database.js";
-import transactionSchema from "../schemas/transactionSchema.js";
+import { db } from "../../database/database.js";
+import transactionSchema from "../../schemas/transactionSchema.js";
 
 export async function createTransaction(req, res) {
   const { error, value } = transactionSchema.validate(req.body, { abortEarly: false });

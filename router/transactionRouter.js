@@ -1,9 +1,11 @@
 import { Router } from "express";
-import { createTransaction } from "../controllers/transactions.js";
-import { authenticateToken } from "../middleware/authMiddleware.js";
+import { createTransaction } from "../controllers/transactions/post.js";
+import { getTransactions } from "../controllers/transactions/get.js";
+import { authenticateToken } from "../middlewares/authMiddleware.js";
 
-const transactionrouter = Router();
+const transactionRouter = Router();
 
-transactionrouter.post("/transactions", authenticateToken, createTransaction);
+transactionRouter.post("/transactions", authenticateToken, createTransaction);
+transactionRouter.get("/transactions", authenticateToken, getTransactions);
 
-export default transactionrouter;
+export { transactionRouter };
