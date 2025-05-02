@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 
 dotenv.config();
 const client = new MongoClient(process.env.DATABASE_URL);
-const DB_URI = process.env.MONGODB_URI;
+const DB_URI = process.env.MONGO_URI;
 
 mongoose.connect(DB_URI, {
   useNewUrlParser: true,
