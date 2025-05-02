@@ -6,10 +6,7 @@ dotenv.config();
 const client = new MongoClient(process.env.DATABASE_URL);
 const DB_URI = process.env.MONGO_URI;
 
-mongoose.connect(DB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+mongoose.connect(DB_URI)
 .then(() => console.log('MongoDB Atlas Connected!'))
 .catch(err => console.error('Error connecting to MongoDB Atlas:', err));
 
